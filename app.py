@@ -81,20 +81,20 @@ def create_default_admin():
     it creates one automatically so you can always log in as admin.
 
     Default Admin Login:
-        Email:    admin@example.com
+        Email:    admin@gmail.com
         Password: admin123
     """
     existing_admin = User.query.filter_by(role='admin').first()
     if not existing_admin:
         admin = User(
             name='System Admin',
-            email='admin@example.com',
+            email='admin@gmail.com',
             password_hash=generate_password_hash('admin123'),
             role='admin'
         )
         db.session.add(admin)
         db.session.commit()
-        print('>>> Default admin created: admin@example.com / admin123')
+        print('>>> Default admin created: admin@gmail.com / admin123')
 
 
 with app.app_context():

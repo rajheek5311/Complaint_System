@@ -16,7 +16,7 @@ python app.py
 Then open: http://127.0.0.1:5000
 
 ## Default Admin Login
-- Email: admin@example.com
+- Email: admin@gmail.com
 - Password: admin123
 
 (This account is created automatically the first time you run app.py)
