@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Track Tickets{% endblock %}
+{% block content %}
+<h4 class="mb-4"><i class="bi bi-search"></i> Track My Tickets</h4>
+
+<div class="card shadow-sm">
+  <div class="card-body p-0">
+    {% if tickets %}
+    <div class="table-responsive">
+      <table class="table table-hover mb-0 align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Ticket ID</th><th>Subject</th><th>Category</th>
+            <th>Priority</th><th>Status</th><th>Last Updated</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in tickets %}
+          <tr>
+            <td><code>{{ t.ticket_code }}</code></td>
+            <td>{{ t.subject }}</td>
+            <td><span class="badge bg-secondary">{{ t.category }}</span></td>
+            <td><span class="badge priority-{{ t.priority|lower }}">{{ t.priority }}</span></td>
+            <td><span class="badge status-{{ t.status|lower|replace(' ', '-') }}">{{ t.status }}</span></td>
+            <td>{{ t.updated_at.strftime('%d %b %Y, %I:%M %p') }}</td>
+            <td><a href="{{ url_for('user.ticket_detail', ticket_id=t.id) }}" class="btn btn-sm btn-outline-primary">View</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+      <p class="text-muted p-4 mb-0">No tickets found.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
